@@ -18,7 +18,7 @@ _SESSION_KEYS = {
 }
 
 DIR = Path(__file__).resolve()
-sys.path.append(DIR)
+sys.path.append(DIR.parent)
 
 DATA_DIR = Path("data")
 
