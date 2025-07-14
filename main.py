@@ -179,7 +179,7 @@ def render_intent_classification_page() -> None:
 
 
 def _auto_examples(file_name: str, history_key: str, k: int, title_key: str, divider: str = "\n---\n\n", ) -> str:
-    path = DATA_DIR / file_name
+    path = file_name
     if not path.exists():
         st.error(f"File not found: {path}")
         return ""
