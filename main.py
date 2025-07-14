@@ -17,9 +17,6 @@ _SESSION_KEYS = {
     "new_assistant_output": str,
 }
 
-DIR = Path(__file__).abspath()
-sys.path.append(DIR.parent.parent)
-
 DATA_DIR = Path("data")
 
 
