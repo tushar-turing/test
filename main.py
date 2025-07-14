@@ -53,7 +53,7 @@ def remove_turn(idx: int) -> None:
 @lru_cache(maxsize=None)
 def load_jsonl(file_name: str, key: str) -> list[str]:
     """Read a ``.jsonl`` file once and cache the requested *key* field."""
-    path = DATA_DIR / file_name
+    path = file_name
     if not path.exists():
         st.error(f"File not found: {path}")
         return []
