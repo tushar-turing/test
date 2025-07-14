@@ -224,7 +224,7 @@ def render_intent_classification_form() -> None:
                 examples_to_retrieve = st.number_input("Examples to retrieve", value=5)
                 turns_to_generate = st.number_input("Turns to generate", value=3)
 
-            examples = _auto_examples("intentData_100.jsonl", "ChatHistory", int(examples_to_retrieve),
+            examples = _auto_examples("./intentData_100.jsonl", "ChatHistory", int(examples_to_retrieve),
                                       "ProductAttributes")
             add_auto_turn_fragment(
                 st.session_state.intent_product_attributes,
