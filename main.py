@@ -17,7 +17,7 @@ _SESSION_KEYS = {
     "new_assistant_output": str,
 }
 
-DATA_DIR = Path("data")
+DATA_DIR = Path()
 
 
 def init_state() -> None:
@@ -179,7 +179,7 @@ def render_intent_classification_page() -> None:
 
 
 def _auto_examples(file_name: str, history_key: str, k: int, title_key: str, divider: str = "\n---\n\n", ) -> str:
-    path = file_name
+    path = DATA_DIR / file_name
     if not path.exists():
         st.error(f"File not found: {path}")
         return ""
