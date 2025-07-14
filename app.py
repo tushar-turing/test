@@ -21,9 +21,9 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-image_path = "./images/turing-logo-white.png" if st.context.theme.type == "dark" else "./images/turing-logo.png"
+# image_path = "./images/turing-logo-white.png" if st.context.theme.type == "dark" else "./images/turing-logo.png"
 
-st.logo(image_path, size="large")
+# st.logo(image_path, size="large")
 st.sidebar.title("Amazon Benchmarks")
 
 if st.sidebar.button("Reset State", use_container_width=True):
