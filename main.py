@@ -9,7 +9,7 @@ from pathlib import Path
 
 import streamlit as st
 
-from prompts import *
+from .prompts import *
 
 _SESSION_KEYS = {
     "chat_history": list[dict[str, str]],
@@ -17,7 +17,10 @@ _SESSION_KEYS = {
     "new_assistant_output": str,
 }
 
-DATA_DIR = Path()
+DIR = Path(__file__).abspath()
+sys.path.append(DIR.parent.parent)
+
+DATA_DIR = Path("data")
 
 
 def init_state() -> None:
@@ -53,7 +56,7 @@ def remove_turn(idx: int) -> None:
 @lru_cache(maxsize=None)
 def load_jsonl(file_name: str, key: str) -> list[str]:
     """Read a ``.jsonl`` file once and cache the requested *key* field."""
-    path = file_name
+    path = DATA_DIR / file_name
     if not path.exists():
         st.error(f"File not found: {path}")
         return []
@@ -179,13 +182,13 @@ def render_intent_classification_page() -> None:
 
 
 def _auto_examples(file_name: str, history_key: str, k: int, title_key: str, divider: str = "\n---\n\n", ) -> str:
-    # path = DATA_DIR / file_name
-    # if not path.exists():
-    #     st.error(f"File not found: {path}")
-    #     # return ""
+    path = DATA_DIR / file_name
+    if not path.exists():
+        st.error(f"File not found: {path}")
+        return ""
 
     examples: list[str] = []
-    with open(file_name, "r", encoding="utf-8") as fp:
+    with path.open("r", encoding="utf-8") as fp:
         for raw in fp:
             try:
                 obj = json.loads(raw)
@@ -224,7 +227,7 @@ def render_intent_classification_form() -> None:
                 examples_to_retrieve = st.number_input("Examples to retrieve", value=5)
                 turns_to_generate = st.number_input("Turns to generate", value=3)
 
-            examples = _auto_examples("./intentData_100.jsonl", "ChatHistory", int(examples_to_retrieve),
+            examples = _auto_examples("intentData_100.jsonl", "ChatHistory", int(examples_to_retrieve),
                                       "ProductAttributes")
             add_auto_turn_fragment(
                 st.session_state.intent_product_attributes,
