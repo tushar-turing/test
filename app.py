@@ -1,5 +1,5 @@
 import streamlit as st
-from main import render_intent_classification_page, render_ten_classification_page, \
+from text_classification.main import render_intent_classification_page, render_ten_classification_page, \
     render_text_to_option
 
 st.set_page_config(
