@@ -9,7 +9,7 @@ from pathlib import Path
 
 import streamlit as st
 
-from .prompts import *
+from prompts import *
 
 _SESSION_KEYS = {
     "chat_history": list[dict[str, str]],
